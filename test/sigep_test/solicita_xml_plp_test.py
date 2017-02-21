@@ -24,3 +24,26 @@
 # SOFTWARE.
 #
 ###############################################################################
+
+from unittest import TestCase
+
+from pysigep.sigep import solicita_xml_plp
+
+
+class TestVerificaDisponibilidadeServico(TestCase):
+
+    def setUp(self):
+        self.kwargs = {
+            'idPlpMaster': '111111',
+            'usuario': 'sigep',
+            'senha': 'n5f9t8',
+        }
+
+    def test_solicita_xml_plp_falha_sem_ambiente(self):
+        with self.assertRaises(Exception):
+            solicita_xml_plp(**kwargs)
+
+    def test_solicita_xml_plp_retorna_xml(self):
+        self.kwargs['ambiente'] = 1
+        resposta = solicita_xml_plp(**self.kwargs)
+        print resposta
